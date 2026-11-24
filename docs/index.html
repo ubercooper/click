@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Click · Profile &amp; Log</title>
+    <meta name="description" content="Set up a profile with a random name and keep a friendly, timestamped log, with a little help from Fox." />
+    <meta name="theme-color" content="#ff8a1f" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/screens.css" />
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="app-header__inner">
+        <a class="brand" href="#/dashboard">
+          <img src="assets/favicon.svg" alt="" width="36" height="36" />
+          <span>Click</span>
+        </a>
+        <nav id="nav" class="nav" aria-label="Main"></nav>
+      </div>
+    </header>
+
+    <main id="view" tabindex="-1">
+      <div class="skeleton skeleton--title" aria-hidden="true"></div>
+      <div class="skeleton skeleton-card" aria-hidden="true"></div>
+      <div class="skeleton skeleton-card" aria-hidden="true"></div>
+    </main>
+
+    <div id="assistant-root"></div>
+
+    <script>
+      // ES modules can't load from file:// URLs, so show how to run the site instead.
+      if (location.protocol === 'file:') {
+        document.getElementById('view').innerHTML =
+          '<div class="card"><h1 class="screen__title">Open me through a local server</h1>' +
+          '<p class="screen__lead">Browsers block JavaScript modules on pages opened straight from disk. From the project folder, run:</p>' +
+          '<pre style="white-space:pre-wrap;overflow-wrap:anywhere;background:#f7f7f7;padding:1rem;border-radius:12px">python3 -m http.server 8000 --directory docs</pre>' +
+          '<p>Then open <strong>http://localhost:8000/</strong></p></div>';
+      }
+    </script>
+    <noscript>
+      <p class="card" style="margin: 1rem">This prototype needs JavaScript turned on.</p>
+    </noscript>
+  </body>
+</html>

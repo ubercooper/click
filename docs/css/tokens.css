@@ -1,0 +1,48 @@
+/* Design tokens — research.md R7 */
+:root {
+  color-scheme: light;
+
+  /* Brand */
+  --c-fox: #ff8a1f;
+  --c-fox-dark: #d9690a;
+  --c-fox-light: #fff1e3;
+  --c-fox-line: #ffc48f;
+  --c-fox-ink: #3b2414;
+
+  /* Actions (white text on these meets 4.5:1) */
+  --c-green: #2b8520;
+  --c-green-dark: #1f6316;
+  --c-red: #d93636;
+  --c-red-dark: #a92424;
+
+  /* Neutrals */
+  --c-ink: #2f2f2f;
+  --c-ink-soft: #636363;
+  --c-line: #e5e5e5;
+  --c-line-strong: #cfcfcf;
+  --c-bg: #ffffff;
+  --c-surface: #ffffff;
+  --c-surface-2: #f7f7f7;
+  --c-warn: #b25c00;
+  --c-focus: #1c82bf;
+
+  /* Shape & spacing */
+  --radius-sm: 12px;
+  --radius: 16px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  /* Type */
+  --font: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Layout */
+  --nav-h: 64px;
+  --content-w: 720px;
+}
