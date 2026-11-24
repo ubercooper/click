@@ -1,50 +1,93 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version change: (unfilled template) → 1.0.0
+- Modified principles: all placeholders replaced (initial ratification)
+  - I. Static-Only, GitHub Pages Hosted
+  - II. Prototype Over Production
+  - III. Mock Data, No Backend
+  - IV. Zero-Build by Default
+  - V. Navigable & Shareable
+- Added sections: Technical Constraints; Development Workflow; Governance
+- Removed sections: none
+- Templates: plan/spec/tasks templates read this file at runtime; no template edits required
+- Deferred TODOs: none
+-->
+# Click Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Static-Only, GitHub Pages Hosted
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+The prototype MUST run as a purely static site served by GitHub Pages. Output is limited to
+HTML, CSS, JavaScript, and static assets (images, fonts, JSON). No server-side code, server
+rendering, serverless functions, or runtime environment variables are permitted.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Rationale: GitHub Pages serves static files only; anything else will not deploy.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. Prototype Over Production
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+This is a clickable UI prototype for demonstrating and validating flows, not production
+software. Speed of iteration and visual fidelity of the flows take priority over robustness,
+scalability, exhaustive error handling, and automated test coverage. Automated tests are
+OPTIONAL and MUST NOT block delivery. Every screen and interaction defined in a spec MUST be
+reachable and clickable.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Rationale: The value of a prototype is fast feedback on UX; production rigor slows that down.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### III. Mock Data, No Backend
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+All data MUST come from local mock sources (JSON or JS modules committed to the repo). Forms
+and actions MUST simulate outcomes (success, error, loading, empty states) client-side without
+persisting to any external service. Secrets, API keys, and real user data MUST NOT be committed
+or required. Any state persistence MUST be limited to in-memory or `localStorage`.  API calls to update and fetch user enter data should leverage local storage.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Rationale: Public static hosting cannot protect secrets, and prototypes must work offline and
+deterministically for demos.
+
+### IV. Zero-Build by Default
+
+The default stack is plain HTML, CSS, and ES-module JavaScript with no build step. Third-party
+libraries SHOULD be loaded from a pinned-version CDN. A build tool (e.g., Vite) MAY be adopted
+only if a plan justifies it, and its output MUST be a static folder deployable to Pages
+(`/docs` on `main` or a GitHub Actions Pages workflow).
+
+Rationale: No build step means the repo is the site—fewer moving parts and instant previews.
+
+### V. Navigable & Shareable
+
+Routing MUST be hash-based (e.g., `#/dashboard`) so every screen is deep-linkable and survives
+refresh on GitHub Pages without 404 workarounds. All asset and link paths MUST be relative so
+the site works under the `/<repo-name>/` sub-path. Layouts MUST be usable at desktop and phone
+widths.
+
+Rationale: Stakeholders review prototypes by sharing links, often on mobile.
+
+## Technical Constraints
+
+- Hosting: GitHub Pages (public static hosting); no custom server configuration available.
+- Languages: HTML5, CSS, modern JavaScript (ES2020+) targeting current evergreen browsers.
+- Dependencies: minimal; each added library MUST be justified in the feature plan.
+- Local preview: any static file server (e.g., `python3 -m http.server`) MUST be sufficient to
+  run the prototype.
+- Accessibility: use semantic HTML and keyboard-reachable interactive elements as a baseline.
+
+## Development Workflow
+
+- Features follow the Spec Kit flow: specify → (clarify) → plan → tasks → implement.
+- Keep each feature spec small (roughly 3–5 screens); expand via additional features rather
+  than one large spec.
+- Each feature is complete when all its screens are reachable via clicks, its mock states are
+  demonstrable, and it works when served from a sub-path locally.
+- Deployment is via push to `main`; the Pages site MUST be verified after each merge.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes other practices for this project. Plans MUST include a
+Constitution Check confirming compliance with Principles I–V; any deviation (e.g., adding a
+build step or a library) MUST be justified in the plan's complexity tracking.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Amendments are made via `/speckit-constitution`, recorded with a version bump:
+MAJOR for removing or redefining principles, MINOR for adding principles or sections or
+materially expanding guidance, PATCH for clarifications and wording.
+
+**Version**: 1.0.0 | **Ratified**: 2026-11-23 | **Last Amended**: 2026-11-23
